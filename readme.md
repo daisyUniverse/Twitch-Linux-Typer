@@ -12,7 +12,7 @@ handles hotkeys and button presses via the ^ char, eg `ctrl^alt^t` in chat would
 
 
 
-Configure everything you need in TwitchLinuxListener.py ( bot nick, oauth token, target channel to listen to )
+Configure everything you need in config.json
 
 you need tkinter and pyautogui for the typing functionality to work
 

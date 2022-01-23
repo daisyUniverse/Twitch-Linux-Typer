@@ -1,0 +1,5 @@
+{
+    "PASS" : "PUT YOUR OAUTH HERE (oauth: part included)",
+    "NICK" : "Whatever you want your bot's nick to be",
+    "CHANNEL": "The target channel you want to listen to"
+}

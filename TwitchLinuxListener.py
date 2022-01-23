@@ -1,10 +1,9 @@
 from socket import socket
+import random
+import json
 
-config = {
-    "PASS" : "PUT YOUR OAUTH HERE (oauth: part included)",
-    "NICK" : "Whatever you want your bot's nick to be",
-    "CHANNEL": "The target channel you want to listen to"
-}
+with open('config.json', 'r') as f:
+  config = json.load(f)
 
 class Chat:
 
@@ -12,10 +11,11 @@ class Chat:
 
         self.socket = socket()
         self.socket.connect(('irc.twitch.tv', 6667))
+        nick = (config['NICK']+str(random.randint(1000,9999)))
 
-        self.socket.send(("PASS "+config['PASS']+"\n").encode('utf-8'))
-        self.socket.send(("NICK "+config['NICK']+"\n").encode('utf-8'))
-        self.socket.send(("JOIN #"+config['CHANNEL']+"\n").encode('utf-8'))
+        self.socket.send(("PASS "  + config['PASS'] +       "\n").encode('utf-8'))
+        self.socket.send(("NICK "  + nick +                 "\n").encode('utf-8'))
+        self.socket.send(("JOIN #" + config['CHANNEL'] +    "\n").encode('utf-8'))
 
         loading = True
 
@@ -24,6 +24,7 @@ class Chat:
             read_buffer_join = read_buffer_join.decode()
 
             for line in read_buffer_join.split('\n')[0:-1]:
+                print(line)
                 loading = 'End of /NAMES list' not in line
 
     def listen(self) -> (str, str):

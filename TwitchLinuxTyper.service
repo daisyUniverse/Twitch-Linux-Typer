@@ -1,0 +1,12 @@
+[Unit]
+Description=Init file for Twitch Linux Typer
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=/home/chat/.config/tlt
+ExecStart=/usr/bin/python3 /home/chat/.config/tlt/TwitchLinuxTyper.py
+
+[Install]
+WantedBy=multi-user.target
